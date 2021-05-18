@@ -136,7 +136,7 @@ input[type=text] {
                 </div>
             </div>
 
-            <iframe class="content" width="650px" height="500px" id="browser_windows_{{ $i }}">
+            <iframe class="content" width="500px" height="500px" id="browser_windows_{{ $i }}">
                 <h3>Browser Window</h3>
                 <p>How to create a detailed browser window look with CSS.</p>
             </iframe>
