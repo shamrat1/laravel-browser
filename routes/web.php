@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\SettingController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,8 @@ use App\Http\Controllers\SettingController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::group(['prefix' => 'admin'],function(){
+// Auth::routes();
+Route::group(['prefix' => 'admin','middleware' => 'web'],function(){
     Route::get('/',[DashboardController::class,'index'])->name('backend.dashboard');
 
     Route::group(['prefix' => 'setting'],function(){

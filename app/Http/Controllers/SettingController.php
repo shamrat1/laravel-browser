@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Setting;
 use App\Traits\ImageOperations;
+use Exception;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -26,10 +27,8 @@ class SettingController extends Controller
         $data = $request->all();
         if($request->hasFile('logo')){
             $data['site_logo'] = $this->saveImage('site_logo',$request->logo,'logo');
-        }else{
-            $data['site_logo'] = 'https://via.placeholder.com/600/92c952';
         }
-        Setting::firstOrCreate([
+        Setting::updateOrCreate([
             'id' => $request->id
         ],$data);
         return redirect()->back();

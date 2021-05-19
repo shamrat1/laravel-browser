@@ -1,15 +1,9 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
-    <style>
+@extends('layout.master')
+@section('title')
+  {{ucwords($setting->site_name)." | Home"}}
+@endsection
+@push('css')
+<style>
 body {
   font-family: Arial
 }
@@ -93,12 +87,10 @@ input[type=text] {
   padding: 10px;
 }
 </style>
-  </head>
-  <body>
-  @php
-    $val = 30;
-  @endphp
-  <div class="row">
+@endpush
+
+@section('content')
+<div class="row">
     <div class="col-3"></div>
     <div class="col-6">
         <div class="row">
@@ -115,7 +107,7 @@ input[type=text] {
     <div class="col-3"></div>
   </div>
   <div class="row bg-white">
-  @for($i = 0; $i < $val; $i++)
+  @for($i = 0; $i < ($setting->number_of_windows ?? 30); $i++)
     <div class="col-6 p-3">
         <div class="container">
             <div class="row">
@@ -144,15 +136,12 @@ input[type=text] {
     </div>
   @endfor
   </div>
+@endsection
 
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-linkify/2.1.9/linkify.min.js" integrity="sha512-kxj7VjlzsQgiku2vbRcZI0FJ0dXmPsiRLugiRxJrCROusKHaFfX/hGDD1/L/R0Y+xI8zlA2B5nm6USapz7nQbg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@push('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-linkify/2.1.9/linkify.min.js" integrity="sha512-kxj7VjlzsQgiku2vbRcZI0FJ0dXmPsiRLugiRxJrCROusKHaFfX/hGDD1/L/R0Y+xI8zlA2B5nm6USapz7nQbg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        let windows = "{{ $val }}";
+        let windows = "{{ $setting->number_of_windows ?? 30 }}";
         $(document).on("click",'#browse',function(){
             if(linkify.find($('#url').val()) == ''){
 
@@ -167,10 +156,4 @@ input[type=text] {
             }
         });
     </script>
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-    -->
-  </body>
-</html>
+@endpush
