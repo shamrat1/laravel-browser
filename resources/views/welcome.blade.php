@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('title')
-  {{ucwords($setting->site_name)." | Home"}}
+  {{ucwords($setting->site_name ?? 'your site')." | Home"}}
 @endsection
 @push('css')
 <style>
@@ -147,10 +147,17 @@ input[type=text] {
 
             }else{
                 let data = linkify.find($('#url').val());
-                let url = data[0]['href'.replace('watch?v=','embed/')];
+                let url = data[0]['href'];
+                if(url.search("youtube.com") > 0){
+                  if(url.search('/watch?') > 0){
+                    url = url.replace("watch","embed");
+                    url += "&autoplay=1";
+                    alert(url);
+                  }
+                }
                 for(let j = 0; j < windows; j++){
                     $('#url_text_'+j).val(url);
-                    $('#browser_windows_'+j).attr('src',url+="?autoplay=1");
+                    $('#browser_windows_'+j).attr('src',url);
                 }
  
             }
