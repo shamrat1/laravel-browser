@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('title')
-  {{ucwords($setting->site_name ?? 'your site')." | Home"}}
+  {{ucwords($setting->site_name ?? 'your site')." | Dashboard"}}
 @endsection
 @push('css')
 <style>

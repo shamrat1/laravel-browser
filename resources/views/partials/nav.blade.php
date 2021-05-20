@@ -21,6 +21,26 @@
             @endforeach
         </div>
       </li>
+      @guest
+      <li class="nav-item pull-right">
+        <a class="nav-link" href="{{route('login')}}">Login</a>
+      </li>
+      @else
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ Auth::user()->name }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{route('backend.dashboard')}}">Admin Panel</a>
+            <div class="dropdown-divider"></div>
+            <form method="POST" action="{{ route('logout') }}">
+              @csrf
+              <button class="dropdown-item">Logout</button>
+            </form>
+        </div>
+      </li>
+      @endguest
+      
     </ul>
   </div>
 </nav>

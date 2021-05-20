@@ -1,6 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\PageController;
@@ -18,7 +29,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 // Auth::routes();
-Route::group(['prefix' => 'admin','middleware' => 'web'],function(){
+Route::group(['prefix' => 'admin','middleware' => 'auth'],function(){
     Route::get('/',[DashboardController::class,'index'])->name('backend.dashboard');
 
     Route::group(['prefix' => 'setting'],function(){
@@ -38,3 +49,5 @@ Route::group(['prefix' => 'admin','middleware' => 'web'],function(){
 
 Route::get('/',[FrontendController::class,'index'])->name('frontend.home');
 Route::get('/pages/{slug}',[FrontendController::class,'getPage'])->name('frontend.page');
+
+require __DIR__.'/auth.php';
