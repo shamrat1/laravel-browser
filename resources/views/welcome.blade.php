@@ -128,7 +128,7 @@ input[type=text] {
                 </div>
             </div>
 
-            <iframe class="content" width="500px" height="500px" id="browser_windows_{{ $i }}">
+            <iframe class="content" width="500px" height="500px" allow='autoplay' id="browser_windows_{{ $i }}">
                 <h3>Browser Window</h3>
                 <p>How to create a detailed browser window look with CSS.</p>
             </iframe>
@@ -149,9 +149,9 @@ input[type=text] {
                 let data = linkify.find($('#url').val());
                 let url = data[0]['href'];
                 if(url.search("youtube.com") > 0){
-                  if(url.search('/watch?') > 0){
-                    url = url.replace("watch","embed");
-                    url += "&autoplay=1";
+                  if(url.search('watch') > 0){
+                    url = url.replace("watch?v=","embed/");
+                    url += "?autoplay=1";
                     alert(url);
                   }
                 }
