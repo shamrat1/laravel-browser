@@ -5,7 +5,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav ms-auto">
       @foreach($pages->where('priority','0') as $page)
         <li class="nav-item">
             <a class="nav-link" href="{{route('frontend.page',$page->slug)}}">{{ $page->title }}</a>
