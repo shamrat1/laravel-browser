@@ -147,10 +147,10 @@ input[type=text] {
 
             }else{
                 let data = linkify.find($('#url').val());
-                let url = data[0]['href'];
+                let url = data[0]['href'.replace('watch?v=','embed/')];
                 for(let j = 0; j < windows; j++){
                     $('#url_text_'+j).val(url);
-                    $('#browser_windows_'+j).attr('src',url);
+                    $('#browser_windows_'+j).attr('src',url+="?autoplay=1");
                 }
  
             }
